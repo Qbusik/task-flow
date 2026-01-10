@@ -7,6 +7,9 @@ from hub.views import (
     PositionUpdateView,
     PositionDeleteView,
     WorkerListView,
+    WorkerDetailView,
+    WorkerUpdateView,
+    WorkerDeleteView,
     TaskTypeListView,
     TaskListView
 )
@@ -37,6 +40,21 @@ urlpatterns = [
         "workers/",
         WorkerListView.as_view(),
         name="worker-list",
+    ),
+    path(
+        "workers/<int:pk>/",
+        WorkerDetailView.as_view(),
+        name="worker-detail",
+    ),
+    path(
+        "workers/<int:pk>/update/",
+        WorkerUpdateView.as_view(),
+        name="worker-update",
+    ),
+    path(
+        "workers/<int:pk>/delete/",
+        WorkerDeleteView.as_view(),
+        name="worker-delete",
     ),
     path(
         "tasktypes/",

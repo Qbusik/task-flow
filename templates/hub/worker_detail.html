@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Username: {{ worker.username }}
+    <a href="{% url 'hub:worker-update' pk=worker.id %}" class="btn btn-primary link-to-page">
+      Update
+    </a>
+    <a href="{% url 'hub:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+  </h1>
+  <br>
+  <p><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
+  <p><strong>Position:</strong> {{ worker.position }}</p>
+  <br>
+  <div class="ml-3">
+    <h4>Tasks:</h4>
+    {% for task in worker.tasks.all %}
+        <hr>
+        <p><strong>Name:</strong> {{ task.name }}</p>
+        <p><strong>Deadline:</strong> {{ task.deadline|date:"l, d.m.Y" }}</p>
+        <p><strong>Priority:</strong> {{ task.get_priority_display }}</p>
+    {% empty %}
+      <p>Worker has no tasks!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -60,6 +60,22 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
 
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    queryset = Worker.objects.all().prefetch_related("tasks")
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    fields = ["first_name", "last_name", "email", "position"]
+    success_url = reverse_lazy("hub:worker-list")
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("hub:worker-list")
+
+
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
