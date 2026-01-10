@@ -1,9 +1,10 @@
+from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from hub.forms import TaskForm
+from hub.forms import TaskForm, WorkerCreationForm
 from hub.models import (
     Worker,
     Task,
@@ -30,6 +31,19 @@ def index(request):
     }
 
     return render(request, "hub/index.html", context=context)
+
+
+def register(request):
+    if request.method == "POST":
+        form = WorkerCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("hub:index")
+    else:
+        form = WorkerCreationForm()
+
+    return render(request, "registration/register.html", {"form": form})
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):

@@ -20,5 +20,9 @@
   <input type="submit" value="Login" class="btn btn-primary" />
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+<br>
+<p>
+Don't have an account?
+<a href="{% url 'hub:register' %}">Register</a>
+</p>
 {% endblock %}
