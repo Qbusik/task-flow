@@ -4,7 +4,8 @@ from hub.views import (
     index,
     PositionsListView,
     WorkersListView,
-    TaskTypesListView
+    TaskTypesListView,
+    TasksListView
 )
 
 urlpatterns = [
@@ -23,6 +24,11 @@ urlpatterns = [
         "tasktypes/",
         TaskTypesListView.as_view(),
         name="task_type-list",
+    ),
+    path(
+        "tasks/",
+        TasksListView.as_view(),
+        name="task-list",
     ),
 ]
 

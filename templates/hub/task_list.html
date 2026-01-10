@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Task List
+  </h1>
+  <br>
+
+  {% if task_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Assigned</th>
+        <th>Type</th>
+        <th>Deadline</th>
+        <th>Completed</th>
+        <th>Priority</th>
+      </tr>
+
+      {% for task in task_list %}
+        <tr>
+          <td>{{ task.name }}</td>
+          <td>
+            {% for worker in task.assignees.all %}
+              {{ worker.username }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              -
+            {% endfor %}
+          </td>
+          <td>{{ task.task_type }}</td>
+          <td>{{ task.deadline|date:"l, d.m.Y" }}</td>
+          <td>{{ task.is_completed }}</td>
+          <td>{{ task.get_priority_display }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no tasks!</p>
+  {% endif %}
+{% endblock %}

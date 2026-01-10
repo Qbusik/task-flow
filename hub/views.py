@@ -38,10 +38,14 @@ class PositionsListView(LoginRequiredMixin, generic.ListView):
 class WorkersListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
-    queryset = Worker.objects.select_related("position")
 
 
 class TaskTypesListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
+
+
+class TasksListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+    context_object_name = "task_list"
 
