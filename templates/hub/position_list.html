@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Position List
+  </h1>
+  <br>
+
+  {% if position_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+      </tr>
+
+      {% for position in position_list %}
+        <tr>
+          <td>
+              {{ position.name }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no positions!</p>
+  {% endif %}
+{% endblock %}

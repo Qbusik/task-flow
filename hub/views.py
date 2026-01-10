@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 
 from hub.models import Worker, Task, Position
 
@@ -21,3 +22,8 @@ def index(request):
     }
 
     return render(request, "hub/index.html", context=context)
+
+
+class PositionsListView(generic.ListView):
+    model = Position
+    context_object_name = "position_list"
