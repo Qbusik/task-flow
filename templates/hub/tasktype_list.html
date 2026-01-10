@@ -3,6 +3,10 @@
 {% block content %}
   <h1>
     Task Type List
+    <br>
+    <a href="{% url 'hub:task_type-create' %}" class="btn btn-primary link-to-page">
+      Add
+    </a>
   </h1>
   <br>
 
@@ -10,12 +14,20 @@
     <table class="table">
       <tr>
         <th>Name</th>
+        <th></th>
+        <th></th>
       </tr>
 
       {% for task_type in task_type_list %}
         <tr>
           <td>
               {{ task_type.name }}
+          </td>
+          <td>
+            <a href="{% url "hub:task_type-update" pk=task_type.id %}">UPDATE</a>
+          </td>
+          <td>
+            <a href="{% url "hub:task_type-delete" pk=task_type.id %}">DELETE</a>
           </td>
         </tr>
       {% endfor %}
