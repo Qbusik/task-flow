@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
@@ -24,6 +25,6 @@ def index(request):
     return render(request, "hub/index.html", context=context)
 
 
-class PositionsListView(generic.ListView):
+class PositionsListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "position_list"
