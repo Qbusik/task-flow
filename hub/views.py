@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from hub.models import (
@@ -33,6 +34,13 @@ def index(request):
 class PositionsListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "position_list"
+    paginate_by = 10
+
+
+class PositionsCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("hub:position-list")
 
 
 class WorkersListView(LoginRequiredMixin, generic.ListView):

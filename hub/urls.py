@@ -3,6 +3,7 @@ from django.urls import path
 from hub.views import (
     index,
     PositionsListView,
+    PositionsCreateView,
     WorkersListView,
     TaskTypesListView,
     TasksListView
@@ -14,6 +15,11 @@ urlpatterns = [
         "positions/",
         PositionsListView.as_view(),
         name="position-list",
+    ),
+path(
+        "positions/create/",
+        PositionsCreateView.as_view(),
+        name="position-create",
     ),
     path(
         "workers/",
