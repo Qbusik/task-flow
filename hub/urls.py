@@ -2,25 +2,25 @@ from django.urls import path
 
 from hub.views import (
     index,
-    PositionsListView,
-    PositionsCreateView,
+    PositionListView,
+    PositionCreateView,
     PositionUpdateView,
     PositionDeleteView,
-    WorkersListView,
-    TaskTypesListView,
-    TasksListView
+    WorkerListView,
+    TaskTypeListView,
+    TaskListView
 )
 
 urlpatterns = [
     path("", index, name="index"),
     path(
         "positions/",
-        PositionsListView.as_view(),
+        PositionListView.as_view(),
         name="position-list",
     ),
     path(
         "positions/create/",
-        PositionsCreateView.as_view(),
+        PositionCreateView.as_view(),
         name="position-create",
     ),
     path(
@@ -35,17 +35,17 @@ urlpatterns = [
     ),
     path(
         "workers/",
-        WorkersListView.as_view(),
+        WorkerListView.as_view(),
         name="worker-list",
     ),
     path(
         "tasktypes/",
-        TaskTypesListView.as_view(),
+        TaskTypeListView.as_view(),
         name="task_type-list",
     ),
     path(
         "tasks/",
-        TasksListView.as_view(),
+        TaskListView.as_view(),
         name="task-list",
     ),
 ]

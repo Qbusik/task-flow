@@ -31,13 +31,13 @@ def index(request):
     return render(request, "hub/index.html", context=context)
 
 
-class PositionsListView(LoginRequiredMixin, generic.ListView):
+class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "position_list"
     paginate_by = 10
 
 
-class PositionsCreateView(LoginRequiredMixin, generic.CreateView):
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     fields = "__all__"
     success_url = reverse_lazy("hub:position-list")
@@ -54,18 +54,18 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("hub:position-list")
 
 
-class WorkersListView(LoginRequiredMixin, generic.ListView):
+class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
     paginate_by = 10
 
 
-class TaskTypesListView(LoginRequiredMixin, generic.ListView):
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
 
 
-class TasksListView(LoginRequiredMixin, generic.ListView):
+class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     context_object_name = "task_list"
 
