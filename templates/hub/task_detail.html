@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ task.name }}
+    <a href="{% url 'hub:task-update' pk=task.id %}" class="btn btn-primary link-to-page">
+      Update
+    </a>
+    <a href="{% url 'hub:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+  </h1>
+  <br>
+  <p>Type: {{ task.task_type }}</p>
+  <p><strong>Description:</strong></p>
+  <p>{{ task.description }}</p>
+  <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+  <p><strong>Created at:</strong> {{ task.created_at }}</p>
+  <p><strong>Priority:</strong> {{ task.get_priority_display }}</p>
+  <br>
+  <div class="ml-3">
+    <h4>Assigned workers:</h4>
+    <hr>
+    {% for worker in task.assignees.all %}
+        <p><a href="{% url "hub:worker-detail" pk=worker.id %}"><strong>{{ worker.first_name }} {{ worker.last_name }}</strong> ({{ worker.position }})</a></p>
+    {% empty %}
+      <p>Worker has no tasks!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

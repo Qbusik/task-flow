@@ -3,6 +3,10 @@
 {% block content %}
   <h1>
     Task List
+    <br>
+    <a href="{% url 'hub:task-create' %}" class="btn btn-primary link-to-page">
+      Add
+    </a>
   </h1>
   <br>
 
@@ -19,7 +23,7 @@
 
       {% for task in task_list %}
         <tr>
-          <td>{{ task.name }}</td>
+          <td><a href="{%  url "hub:task-detail" pk=task.id %}">{{ task.name }}</a></td>
           <td>
             {% for worker in task.assignees.all %}
               {{ worker.username }}{% if not forloop.last %}, {% endif %}
