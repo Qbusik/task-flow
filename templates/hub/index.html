@@ -1,1 +1,17 @@
-test
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>TASK FLOW</h1>
+    <p>Welcome!</p>
+    <p>Task Flow has the following record counts:</p>
+    <ul>
+        <li><strong>Workers:</strong> {{ num_workers }}</li>
+        <li><strong>Tasks:</strong> {{ num_tasks }}</li>
+        <li><strong>Positions:</strong> {{ num_positions }}</li>
+    </ul>
+
+    <p>You have visited this page
+        {{ num_visits }} time{{ num_visits|pluralize }}.
+    </p>
+
+{% endblock %}
