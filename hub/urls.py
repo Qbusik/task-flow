@@ -4,6 +4,8 @@ from hub.views import (
     index,
     PositionsListView,
     PositionsCreateView,
+    PositionUpdateView,
+    PositionDeleteView,
     WorkersListView,
     TaskTypesListView,
     TasksListView
@@ -16,10 +18,20 @@ urlpatterns = [
         PositionsListView.as_view(),
         name="position-list",
     ),
-path(
+    path(
         "positions/create/",
         PositionsCreateView.as_view(),
         name="position-create",
+    ),
+    path(
+        "positions/<int:pk>/update/",
+        PositionUpdateView.as_view(),
+        name="position-update",
+    ),
+    path(
+        "positions/<int:pk>/delete/",
+        PositionDeleteView.as_view(),
+        name="position-delete",
     ),
     path(
         "workers/",
