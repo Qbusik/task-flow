@@ -38,6 +38,7 @@ class PositionsListView(LoginRequiredMixin, generic.ListView):
 class WorkersListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
+    paginate_by = 10
 
 
 class TaskTypesListView(LoginRequiredMixin, generic.ListView):
