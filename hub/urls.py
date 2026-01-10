@@ -3,7 +3,8 @@ from django.urls import path
 from hub.views import (
     index,
     PositionsListView,
-    WorkersListView
+    WorkersListView,
+    TaskTypesListView
 )
 
 urlpatterns = [
@@ -17,6 +18,11 @@ urlpatterns = [
         "workers/",
         WorkersListView.as_view(),
         name="worker-list",
+    ),
+    path(
+        "tasktypes/",
+        TaskTypesListView.as_view(),
+        name="task_type-list",
     ),
 ]
 

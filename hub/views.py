@@ -2,7 +2,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
-from hub.models import Worker, Task, Position
+from hub.models import (
+    Worker,
+    Task,
+    Position,
+    TaskType
+)
 
 
 def index(request):
@@ -33,3 +38,10 @@ class PositionsListView(LoginRequiredMixin, generic.ListView):
 class WorkersListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
+    queryset = Worker.objects.select_related("position")
+
+
+class TaskTypesListView(LoginRequiredMixin, generic.ListView):
+    model = TaskType
+    context_object_name = "task_type_list"
+
