@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Worker List
+  </h1>
+  <br>
+
+  {% if worker_list %}
+    <table class="table">
+      <tr>
+        <th>Username</th>
+        <th>Full Name</th>
+        <th>Position</th>
+      </tr>
+
+      {% for worker in worker_list %}
+        <tr>
+          <td>{{ worker.username }}</td>
+          <td>{{ worker.first_name }} {{ worker.last_name }}</td>
+          <td>{{ worker.position }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no workers!</p>
+  {% endif %}
+{% endblock %}

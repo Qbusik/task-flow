@@ -28,3 +28,8 @@ def index(request):
 class PositionsListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "position_list"
+
+
+class WorkersListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    context_object_name = "worker_list"
