@@ -1,11 +1,15 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
     Worker List
   </h1>
   <br>
-
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}&nbsp;&nbsp;
+    <input type="submit" value="🔎" class="btn btn-secondary">
+  </form><br>
   {% if worker_list %}
     <table class="table">
       <tr>
