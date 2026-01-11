@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from hub.models import Task
+from hub.models import Task, Comment
 
 
 class WorkerCreationForm(UserCreationForm):
@@ -28,7 +28,6 @@ class TaskForm(forms.ModelForm):
             "deadline": forms.DateTimeInput(
                 attrs={
                     "type": "datetime-local",
-                    "class": "form-control"
                 },
                 format="%Y-%m-%dT%H:%M",
             ),
@@ -55,3 +54,18 @@ class NameSearchForm(forms.Form):
             attrs={"placeholder": "Search by name..."}
         )
     )
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["content"]
+        labels = {"content": ""}
+        widgets = {
+            "content": forms.Textarea(
+                attrs={
+                    "rows": 3,
+                    "placeholder": "Add a comment...",
+                }
+            )
+        }

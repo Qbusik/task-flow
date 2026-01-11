@@ -11,7 +11,8 @@ from hub.forms import (
     TaskForm,
     WorkerCreationForm,
     WorkerUsernameSearchForm,
-    NameSearchForm
+    NameSearchForm,
+    CommentForm
 )
 from hub.models import (
     Worker,
@@ -217,6 +218,23 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
     queryset = Task.objects.all().prefetch_related("assignees")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["comment_form"] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.task = self.object
+            comment.author = request.user
+            comment.save()
+
+        return redirect("hub:task-detail", pk=self.object.pk)
 
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
