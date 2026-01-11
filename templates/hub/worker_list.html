@@ -21,9 +21,9 @@
       {% for worker in worker_list %}
         <tr>
           {% if user == worker %}
-            <td><strong><a href="{% url "hub:worker-detail" pk=worker.id %}">{{ worker.username }} (Me)</a></strong></td>
+            <td><strong><a href="{% url "hub:worker-detail" pk=worker.id %}">👤 {{ worker.username }} (Me)</a></strong></td>
             {% else %}
-            <td><a href="{% url "hub:worker-detail" pk=worker.id %}">{{ worker.username }}</a></td>
+            <td><a href="{% url "hub:worker-detail" pk=worker.id %}">👤 {{ worker.username }}</a></td>
           {% endif %}
           <td>{{ worker.first_name }} {{ worker.last_name }}</td>
           <td>{{ worker.position }}</td>

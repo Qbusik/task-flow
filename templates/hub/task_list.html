@@ -37,7 +37,13 @@
           </td>
           <td>{{ task.task_type }}</td>
           <td>{{ task.deadline|date:"l, d.m.Y" }}</td>
-          <td>{{ task.is_completed }}</td>
+          <td>
+            {% if task.is_completed %}
+              ✅
+            {% else %}
+              ❌
+            {% endif %}
+          </td>
           <td>{{ task.get_priority_display }}</td>
         </tr>
       {% endfor %}
