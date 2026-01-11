@@ -6,6 +6,7 @@ from hub.models import (
     TaskType,
     Task,
     Position,
+    Comment,
 )
 
 
@@ -37,3 +38,4 @@ class TaskTypeAdmin(admin.ModelAdmin):
 
 admin.site.register(TaskType)
 admin.site.register(Position)
+admin.site.register(Comment)
