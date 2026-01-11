@@ -16,8 +16,8 @@
   <p><strong>Position:</strong> {{ worker.position }}</p>
   <br>
   <div class="ml-3">
-    <h4>{{ worker.tasks.count }} Tasks:</h4>
-    {% for task in worker.tasks.all %}
+    <h4>{{ incomplete_tasks.count }} Ongoing tasks:</h4>
+    {% for task in incomplete_tasks %}
         <hr>
       <p><strong>Name: </strong><a href="{% url "hub:task-detail" pk=task.id %}">{{ task.name }}</a></p>
         <p><strong>Deadline:</strong> {{ task.deadline|date:"l, d.m.Y" }}</p>
@@ -25,5 +25,13 @@
     {% empty %}
       <p>Worker has no assigned tasks!</p>
     {% endfor %}
+    {% if completed_tasks.count > 0 %}
+      <br>
+      <h5>{{ completed_tasks.count }} Completed tasks:</h5>
+      {% for task in completed_tasks %}
+          <hr>
+        <p>✅ <strong><a href="{% url "hub:task-detail" pk=task.id %}">{{ task.name }}</a></strong></p>
+      {% endfor %}
+    {% endif %}
   </div>
 {% endblock %}
