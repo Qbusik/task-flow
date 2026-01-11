@@ -21,6 +21,7 @@ from hub.views import (
     TaskCreateView,
     TaskUpdateView,
     toggle_assign_to_task,
+    toggle_completed_to_task,
     CustomLoginView
 )
 
@@ -117,6 +118,11 @@ urlpatterns = [
         "tasks/<int:pk>/toggle-assign/",
         toggle_assign_to_task,
         name="toggle-task-assign",
+    ),
+    path(
+        "tasks/<int:pk>/toggle-completed/",
+        toggle_completed_to_task,
+        name="toggle-task-completed",
     ),
 ]
 

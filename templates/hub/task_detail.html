@@ -10,9 +10,14 @@
     <a href="{% url 'hub:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">
       Delete
     </a>
+      {% if task.is_completed %}
+        <a href="{% url 'hub:toggle-task-completed' pk=task.id %}" class="btn btn-danger link-to-page">Mark as incomplete</a>
+        {% else %}
+        <a href="{% url 'hub:toggle-task-completed' pk=task.id %}" class="btn btn-success link-to-page">Mark as completed</a>
+      {% endif %}
   </h1>
   <br>
-  <p>Type: {{ task.task_type }}</p>
+  <p><strong>Type:</strong> {{ task.task_type }}</p>
   <p><strong>Description:</strong></p>
   <p>{{ task.description }}</p>
   <p><strong>Deadline:</strong> {{ task.deadline }}</p>

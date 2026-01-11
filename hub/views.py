@@ -65,6 +65,17 @@ def toggle_assign_to_task(request, pk):
     return HttpResponseRedirect(reverse_lazy("hub:task-detail", args=[pk]))
 
 
+@login_required
+def toggle_completed_to_task(request, pk):
+    task = Task.objects.get(id=pk)
+    if task.is_completed:
+        task.is_completed = False
+    else:
+        task.is_completed = True
+    task.save()
+    return HttpResponseRedirect(reverse_lazy("hub:task-detail", args=[pk]))
+
+
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "position_list"
