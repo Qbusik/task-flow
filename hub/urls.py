@@ -19,7 +19,8 @@ from hub.views import (
     TaskDetailView,
     TaskDeleteView,
     TaskCreateView,
-    TaskUpdateView
+    TaskUpdateView,
+    toggle_assign_to_task
 )
 
 urlpatterns = [
@@ -109,6 +110,11 @@ urlpatterns = [
         "tasks/<int:pk>/delete/",
         TaskDeleteView.as_view(),
         name="task-delete",
+    ),
+    path(
+        "tasks/<int:pk>/toggle-assign/",
+        toggle_assign_to_task,
+        name="toggle-task-assign",
     ),
 ]
 

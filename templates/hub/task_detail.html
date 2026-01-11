@@ -20,6 +20,15 @@
   <br>
   <div class="ml-3">
     <h4>Assigned workers:</h4>
+    {% if user not in task.assignees.all %}
+      <a href="{% url 'hub:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
+        Add me to this task
+      </a>
+      {% else %}
+      <a href="{% url 'hub:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
+        Remove me from this task
+      </a>
+    {% endif %}
     <hr>
     {% for worker in task.assignees.all %}
         <p><a href="{% url "hub:worker-detail" pk=worker.id %}"><strong>{{ worker.first_name }} {{ worker.last_name }}</strong> ({{ worker.position }})</a></p>
