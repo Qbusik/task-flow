@@ -2,6 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -18,7 +19,8 @@ from hub.models import (
     Worker,
     Task,
     Position,
-    TaskType
+    TaskType,
+    Comment
 )
 
 
@@ -134,7 +136,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Worker.objects.all()
+        queryset = Worker.objects.select_related("position").all()
         form = WorkerUsernameSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(
@@ -217,7 +219,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Task.objects.all()
+        queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
         form = NameSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(
@@ -228,7 +230,13 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
-    queryset = Task.objects.all().prefetch_related("assignees")
+    queryset = Task.objects.select_related("task_type").prefetch_related(
+        "assignees",
+        Prefetch(
+            "comments",
+            queryset=Comment.objects.select_related("author").order_by("created_at")
+        )
+    )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
