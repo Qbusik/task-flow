@@ -33,7 +33,7 @@
     {% for worker in task.assignees.all %}
         <p><a href="{% url "hub:worker-detail" pk=worker.id %}"><strong>{{ worker.first_name }} {{ worker.last_name }}</strong> ({{ worker.position }})</a></p>
     {% empty %}
-      <p>Worker has no tasks!</p>
+      <p>No workers assigned to this task!</p>
     {% endfor %}
   </div>
 {% endblock %}
