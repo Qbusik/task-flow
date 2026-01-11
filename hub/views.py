@@ -1,6 +1,7 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -51,6 +52,16 @@ def register(request):
         form = WorkerCreationForm()
 
     return render(request, "registration/register.html", {"form": form})
+
+
+@login_required
+def toggle_assign_to_task(request, pk):
+    worker = Worker.objects.get(id=request.user.id)
+    if Task.objects.get(id=pk) in worker.tasks.all():
+        worker.tasks.remove(pk)
+    else:
+        worker.tasks.add(pk)
+    return HttpResponseRedirect(reverse_lazy("hub:task-detail", args=[pk]))
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
@@ -225,11 +236,11 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("hub:task-list")
 
 
-@login_required
-def toggle_assign_to_task(request, pk):
-    worker = Worker.objects.get(id=request.user.id)
-    if Task.objects.get(id=pk) in worker.tasks.all():
-        worker.tasks.remove(pk)
-    else:
-        worker.tasks.add(pk)
-    return HttpResponseRedirect(reverse_lazy("hub:task-detail", args=[pk]))
+class CustomLoginView(LoginView):
+    def form_valid(self, form):
+        remember_me = self.request.POST.get("remember_me")
+        if remember_me:
+            self.request.session.set_expiry(604800)
+        else:
+            self.request.session.set_expiry(0)
+        return super().form_valid(form)

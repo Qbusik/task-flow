@@ -20,12 +20,14 @@ from hub.views import (
     TaskDeleteView,
     TaskCreateView,
     TaskUpdateView,
-    toggle_assign_to_task
+    toggle_assign_to_task,
+    CustomLoginView
 )
 
 urlpatterns = [
     path("register/", register, name="register"),
     path("", index, name="index"),
+    path("accounts/login/", CustomLoginView.as_view(), name="login"),
     path(
         "positions/",
         PositionListView.as_view(),
