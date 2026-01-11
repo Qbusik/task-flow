@@ -16,7 +16,7 @@
   <p><strong>Position:</strong> {{ worker.position }}</p>
   <br>
   <div class="ml-3">
-    <h4>Tasks:</h4>
+    <h4>{{ worker.tasks.count }} Tasks:</h4>
     {% for task in worker.tasks.all %}
         <hr>
       <p><strong>Name: </strong><a href="{% url "hub:task-detail" pk=task.id %}">{{ task.name }}</a></p>
