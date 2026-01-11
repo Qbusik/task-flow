@@ -13,7 +13,8 @@ from hub.forms import (
     WorkerCreationForm,
     WorkerUsernameSearchForm,
     NameSearchForm,
-    CommentForm
+    CommentForm,
+    TaskSearchForm
 )
 from hub.models import (
     Worker,
@@ -219,19 +220,29 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         context = super(TaskListView, self).get_context_data(**kwargs)
 
         name = self.request.GET.get("name", "")
+        status = self.request.GET.get("status", "")
 
-        context["search_form"] = NameSearchForm(
-            initial={"name": name}
+        context["search_form"] = TaskSearchForm(
+            initial={"name": name, "status": status}
         )
         return context
 
     def get_queryset(self):
         queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
-        form = NameSearchForm(self.request.GET)
+        form = TaskSearchForm(self.request.GET)
+
         if form.is_valid():
-            return queryset.filter(
-                name__icontains=form.cleaned_data["name"]
-            )
+            name = form.cleaned_data.get("name")
+            status = form.cleaned_data.get("status")
+
+            if name:
+                queryset = queryset.filter(name__icontains=name)
+
+            if status == "completed":
+                queryset = queryset.filter(is_completed=True)
+            elif status == "incomplete":
+                queryset = queryset.filter(is_completed=False)
+
         return queryset
 
 
