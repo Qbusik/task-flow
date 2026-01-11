@@ -9,7 +9,8 @@ from django.views import generic
 from hub.forms import (
     TaskForm,
     WorkerCreationForm,
-    WorkerUsernameSearchForm, TaskNameSearchForm
+    WorkerUsernameSearchForm,
+    NameSearchForm
 )
 from hub.models import (
     Worker,
@@ -56,6 +57,25 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "position_list"
     paginate_by = 10
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PositionListView, self).get_context_data(**kwargs)
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = NameSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Position.objects.all()
+        form = NameSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return queryset
 
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
@@ -121,6 +141,25 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "task_type_list"
     paginate_by = 10
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskTypeListView, self).get_context_data(**kwargs)
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = NameSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = TaskType.objects.all()
+        form = NameSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return queryset
+
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
@@ -149,14 +188,14 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = TaskNameSearchForm(
+        context["search_form"] = NameSearchForm(
             initial={"name": name}
         )
         return context
 
     def get_queryset(self):
         queryset = Task.objects.all()
-        form = TaskNameSearchForm(self.request.GET)
+        form = NameSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(
                 name__icontains=form.cleaned_data["name"]
