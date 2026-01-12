@@ -6,9 +6,12 @@ from hub.models import Task, Comment
 
 
 class WorkerCreationForm(UserCreationForm):
+    first_name = forms.CharField(required=True, max_length=50, label="First Name")
+    last_name = forms.CharField(required=True, max_length=100, label="Last Name")
+
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ("username", "email", "password1", "password2")
+        fields = ("username", "email", "first_name", "last_name", "password1", "password2")
 
 
 class TaskForm(forms.ModelForm):
