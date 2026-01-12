@@ -13,6 +13,15 @@ class WorkerCreationForm(UserCreationForm):
         model = get_user_model()
         fields = ("username", "email", "first_name", "last_name", "password1", "password2")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].help_text = ''
+        self.fields['password2'].help_text = ''
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs['placeholder'] = field.label
+            field.label = ''
+
 
 class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
