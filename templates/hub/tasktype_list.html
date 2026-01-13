@@ -60,7 +60,7 @@
         {% for task_type in task_type_list %}
           <tr>
             <td>
-                {{ task_type.name }}
+                📋 {{ task_type.name }}
             </td>
             <td>
               <a href="{% url "hub:task_type-update" pk=task_type.id %}"><span class="text-primary text-gradient font-weight-bold">UPDATE</span></a>
