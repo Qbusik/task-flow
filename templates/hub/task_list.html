@@ -71,7 +71,7 @@
 
         {% for task in task_list %}
           <tr>
-            <td>📋 <a class="text-primary text-gradient font-weight-bold" href="{%  url "hub:task-detail" pk=task.id %}">{{ task.name }}</a></td>
+            <td><a href="{%  url "hub:task-detail" pk=task.id %}">📋 <span class="text-primary text-gradient font-weight-bold">{{ task.name }}</span></a></td>
             <td>
               {% for worker in task.assignees.all %}
                 {{ worker.username }}{% if not forloop.last %}, {% endif %}
