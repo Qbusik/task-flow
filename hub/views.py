@@ -1,7 +1,7 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeDoneView, PasswordChangeView
 from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -14,7 +14,7 @@ from hub.forms import (
     WorkerUsernameSearchForm,
     NameSearchForm,
     CommentForm,
-    TaskSearchForm
+    TaskSearchForm, WorkerChangePasswordForm
 )
 from hub.models import (
     Worker,
@@ -77,6 +77,16 @@ def toggle_completed_to_task(request, pk):
         task.is_completed = True
     task.save()
     return HttpResponseRedirect(reverse_lazy("hub:task-detail", args=[pk]))
+
+
+class PasswordView(PasswordChangeView):
+    form_class = WorkerChangePasswordForm
+    template_name = "registration/password_change.html"
+    success_url = reverse_lazy("hub:password_change_done")
+
+
+class PasswordDoneView(PasswordChangeDoneView):
+    template_name = "registration/password_change_done.html"
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):

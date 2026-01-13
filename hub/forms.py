@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 
 from hub.models import Task, Comment
 
@@ -21,6 +21,14 @@ class WorkerCreationForm(UserCreationForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['placeholder'] = field.label
             field.label = ''
+
+
+class WorkerChangePasswordForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].help_text = ''
+        self.fields['new_password1'].help_text = ''
+        self.fields['new_password2'].help_text = ''
 
 
 class TaskForm(forms.ModelForm):

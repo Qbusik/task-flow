@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, reverse_lazy
 
 from hub.views import (
     index,
@@ -22,13 +22,30 @@ from hub.views import (
     TaskUpdateView,
     toggle_assign_to_task,
     toggle_completed_to_task,
-    CustomLoginView
+    CustomLoginView,
+    PasswordView,
+    PasswordDoneView
 )
 
 urlpatterns = [
     path("register/", register, name="register"),
     path("", index, name="index"),
     path("accounts/login/", CustomLoginView.as_view(), name="login"),
+    path(
+        "password-change/",
+        PasswordView.as_view(
+            template_name="registration/password_change.html",
+            success_url=reverse_lazy("hub:password_change_done")
+        ),
+        name="password_change"
+    ),
+    path(
+        "password-change/done/",
+        PasswordDoneView.as_view(
+            template_name="registration/password_change_done.html"
+        ),
+        name="password_change_done"
+    ),
     path(
         "positions/",
         PositionListView.as_view(),
