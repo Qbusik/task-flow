@@ -40,12 +40,10 @@
 
     <h1>
       Task List
-      <br>
       <a href="{% url 'hub:task-create' %}" class="btn btn-primary link-to-page" style="float: right">
-        + New Task
+        New Task
       </a>
     </h1>
-    <br>
     <form method="get" class="d-flex align-items-center gap-2">
     <div style="width: 260px">
         {{ search_form.name|as_crispy_field }}
