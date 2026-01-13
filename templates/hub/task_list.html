@@ -1,55 +1,108 @@
-{% extends "base.html" %}
+{% extends 'layouts/base_sections.html' %}
 {% load crispy_forms_filters %}
+{% load static %}
+
+{% block title %} TASK FLOW {% endblock title %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
 
 {% block content %}
-  <h1>
-    Task List
+
+<header class="header-1">
+  <div class="page-header min-vh-20 relative" style="background-image: url('{% static 'img/curved-images/curved.jpg' %}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 text-center mx-auto">
+            <br><br><br><br><br><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-absolute w-100 z-index-1 bottom-0">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="moving-waves">
+          <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
+          <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
+          <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
+          <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+  <div style="padding: 30px">
+
+    <h1>
+      Task List
+      <br>
+      <a href="{% url 'hub:task-create' %}" class="btn btn-primary link-to-page" style="float: right">
+        + New Task
+      </a>
+    </h1>
     <br>
-    <a href="{% url 'hub:task-create' %}" class="btn btn-primary link-to-page">
-      Add
-    </a>
-  </h1>
-  <br>
-  <form action="" method="get" class="form-inline">
-    {{ search_form|crispy }}&nbsp;&nbsp;
-    <input type="submit" value="🔎" class="btn btn-secondary">
-  </form><br>
-  {% if task_list %}
-    <table class="table">
-      <tr>
-        <th>Name</th>
-        <th>Assigned</th>
-        <th>Type</th>
-        <th>Deadline</th>
-        <th>Completed</th>
-        <th>Priority</th>
-      </tr>
+    <form method="get" class="d-flex align-items-center gap-2">
+    <div style="width: 260px">
+        {{ search_form.name|as_crispy_field }}
+    </div>
 
-      {% for task in task_list %}
+    <div style="width: 160px">
+        {{ search_form.status|as_crispy_field }}
+    </div>
+
+    <button class="btn btn-secondary">🔎</button>
+    </form>
+    <br>
+    {% if task_list %}
+      <table class="table">
         <tr>
-          <td><a href="{%  url "hub:task-detail" pk=task.id %}">{{ task.name }}</a></td>
-          <td>
-            {% for worker in task.assignees.all %}
-              {{ worker.username }}{% if not forloop.last %}, {% endif %}
-            {% empty %}
-              -
-            {% endfor %}
-          </td>
-          <td>{{ task.task_type }}</td>
-          <td>{{ task.deadline|date:"l, d.m.Y" }}</td>
-          <td>
-            {% if task.is_completed %}
-              ✅
-            {% else %}
-              ❌
-            {% endif %}
-          </td>
-          <td>{{ task.get_priority_display }}</td>
+          <th>Name</th>
+          <th>Assigned</th>
+          <th>Type</th>
+          <th>Deadline</th>
+          <th>Completed</th>
+          <th>Priority</th>
         </tr>
-      {% endfor %}
-    </table>
 
-  {% else %}
-      <p>There are no tasks!</p>
-  {% endif %}
+        {% for task in task_list %}
+          <tr>
+            <td><a class="text-primary text-gradient font-weight-bold" href="{%  url "hub:task-detail" pk=task.id %}">{{ task.name }}</a></td>
+            <td>
+              {% for worker in task.assignees.all %}
+                {{ worker.username }}{% if not forloop.last %}, {% endif %}
+              {% empty %}
+                -
+              {% endfor %}
+            </td>
+            <td>{{ task.task_type }}</td>
+            <td>{{ task.deadline|date:"l, d.m.Y" }}</td>
+            <td>
+              {% if task.is_completed %}
+                ✅
+              {% else %}
+                ❌
+              {% endif %}
+            </td>
+            <td>
+              {% if task.get_priority_display == "Urgent" %}
+                <span style="color: red">{{ task.get_priority_display }}</span>
+              {% else %}
+                {{ task.get_priority_display }}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+    {% else %}
+        <p>There are no tasks!</p>
+    {% endif %}
+
+  </div>
+
 {% endblock %}
