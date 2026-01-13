@@ -37,7 +37,7 @@
 </header>
 
   <div style="padding: 30px">
-    <h1>{{ object|yesno:"Update,Create new" }} worker {{ worker.username }}:</h1>
+    <h1>{{ object|yesno:"Update,Create new" }} worker:</h1>
     <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ form|crispy }}
