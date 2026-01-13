@@ -1,63 +1,110 @@
-{% extends "base.html" %}
+{% extends 'layouts/base_sections.html' %}
 {% load crispy_forms_filters %}
+{% load static %}
+
+{% block title %} TASK FLOW {% endblock title %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
 
 {% block content %}
-  <h1>
-    {{ task.name }}
-    <a href="{% url 'hub:task-update' pk=task.id %}" class="btn btn-primary link-to-page">
-      Update
-    </a>
-    <a href="{% url 'hub:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
-      {% if task.is_completed %}
-        <a href="{% url 'hub:toggle-task-completed' pk=task.id %}" class="btn btn-danger link-to-page">Mark as incomplete</a>
-        {% else %}
-        <a href="{% url 'hub:toggle-task-completed' pk=task.id %}" class="btn btn-success link-to-page">Mark as completed</a>
-      {% endif %}
-  </h1>
-  <br>
-  <p><strong>Type:</strong> {{ task.task_type }}</p>
-  <p><strong>Description:</strong></p>
-  <p>{{ task.description }}</p>
-  <p><strong>Deadline:</strong> {{ task.deadline }}</p>
-  <p><strong>Created at:</strong> {{ task.created_at }}</p>
-  <p><strong>Priority:</strong> {{ task.get_priority_display }}</p>
-  <br>
-  <div class="ml-3">
-    <h4>Assigned workers:</h4>
-    {% if user not in task.assignees.all %}
-      <a href="{% url 'hub:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
-        Add me to this task
-      </a>
-      {% else %}
-      <a href="{% url 'hub:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
-        Remove me from this task
-      </a>
-    {% endif %}
-    <hr>
-    {% for worker in task.assignees.all %}
-        <p><a href="{% url "hub:worker-detail" pk=worker.id %}"><strong>{{ worker.first_name }} {{ worker.last_name }}</strong> ({{ worker.position }})</a></p>
-    {% empty %}
-      <p>No workers assigned to this task!</p>
-    {% endfor %}
+
+<header class="header-1">
+  <div class="page-header min-vh-20 relative" style="background-image: url('{% static 'img/curved-images/curved.jpg' %}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 text-center mx-auto">
+            <br><br><br><br><br><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-absolute w-100 z-index-1 bottom-0">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="moving-waves">
+          <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
+          <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
+          <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
+          <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
+        </g>
+      </svg>
+    </div>
   </div>
-  <hr>
-  <h5>Comments:</h5>
-  {% for comment in task.comments.all %}
+</header>
+
+  <div style="padding: 30px">
+    <h1>
+      {{ task.name }}
+        <div style="float: right">
+        <a href="{% url 'hub:task-update' pk=task.id %}" class="btn btn-primary link-to-page">
+          Update
+        </a>
+        <a href="{% url 'hub:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">
+          Delete
+        </a>
+          {% if task.is_completed %}
+            <a href="{% url 'hub:toggle-task-completed' pk=task.id %}" class="btn btn-danger link-to-page">Mark as incomplete</a>
+            {% else %}
+            <a href="{% url 'hub:toggle-task-completed' pk=task.id %}" class="btn btn-success link-to-page">Mark as completed</a>
+          {% endif %}
+      </div>
+    </h1>
+    <br>
+    <p><strong>Type:</strong> {{ task.task_type }}</p>
+    <p><strong>Description:</strong></p>
+    <p>{{ task.description }}</p>
+    <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+    <p><strong>Created at:</strong> {{ task.created_at }}</p>
     <p>
-      <strong><a href="{% url "hub:worker-detail" pk=comment.author.id %}">{{ comment.author.username }}</a></strong> - {{ comment.created_at|date:"Y-m-d H:i" }}:<br>
-      {{ comment.content }}
+      <strong>Priority:</strong>
+      {% if task.get_priority_display == "Urgent" %}
+        <span style="color: red">{{ task.get_priority_display }}</span>
+      {% else %}
+        {{ task.get_priority_display }}
+      {% endif %}
     </p>
-    {% empty %}
-    No comments!
-  {% endfor %}
-  <br><br>
-  <form method="post">
-    {% csrf_token %}
-    {{ comment_form|crispy }}
-    <button type="submit" class="btn btn-secondary btn-sm mt-2">
-      Add comment
-    </button>
-  </form>
+    <br>
+    <div class="ml-3">
+      <h4>Assigned workers:</h4>
+      <div style="float: right">
+        {% if user not in task.assignees.all %}
+        <a href="{% url 'hub:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
+          Add me to this task
+        </a>
+        {% else %}
+        <a href="{% url 'hub:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
+          Remove me from this task
+        </a>
+      {% endif %}
+      </div>
+
+      {% for worker in task.assignees.all %}
+          <p><a href="{% url "hub:worker-detail" pk=worker.id %}">👤 <span class="text-primary text-gradient font-weight-bold">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.position }})</span></a></p>
+      {% empty %}
+        <p>No workers assigned to this task!</p>
+      {% endfor %}
+    </div>
+    <hr>
+    <h5>Comments:</h5>
+    {% for comment in task.comments.all %}
+      <p>
+        <strong><a class="text-primary text-gradient font-weight-bold" href="{% url "hub:worker-detail" pk=comment.author.id %}">{{ comment.author.username }}</a></strong> - {{ comment.created_at|date:"Y-m-d H:i" }}:<br>
+        {{ comment.content }}
+      </p>
+      {% empty %}
+      No comments!
+    {% endfor %}
+    <br><br>
+    <form method="post">
+      {% csrf_token %}
+      {{ comment_form|crispy }}
+      <button type="submit" class="btn btn-secondary btn-sm mt-2">
+        Add comment
+      </button>
+    </form>
+  </div>
 {% endblock %}
