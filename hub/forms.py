@@ -82,7 +82,7 @@ class TaskSearchForm(forms.Form):
     )
 
     STATUS_CHOICES = [
-        ("", "All"),  # puste = pokaż wszystkie
+        ("", "All"),  # empty stands for "Show All"
         ("completed", "Completed"),
         ("incomplete", "Incomplete"),
     ]
