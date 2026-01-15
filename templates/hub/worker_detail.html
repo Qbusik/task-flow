@@ -56,9 +56,9 @@
     <div class="ml-3">
       <table style="width: 40vw; float: left" >
         <tr>
-          <th>{{ incomplete_tasks.count }} ongoing tasks:</th>
+          <th>{{ incompleted_tasks.count }} ongoing tasks:</th>
         </tr>
-        {% for task in incomplete_tasks %}
+        {% for task in incompleted_tasks %}
           <tr>
             <td>
               <p>
