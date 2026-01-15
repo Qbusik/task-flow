@@ -71,10 +71,7 @@ def toggle_assign_to_task(request, pk):
 @login_required
 def toggle_completed_to_task(request, pk):
     task = Task.objects.get(id=pk)
-    if task.is_completed:
-        task.is_completed = False
-    else:
-        task.is_completed = True
+    task.is_completed = not task.is_completed
     task.save()
     return HttpResponseRedirect(reverse_lazy("hub:task-detail", args=[pk]))
 
