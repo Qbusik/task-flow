@@ -127,4 +127,3 @@ class PrivatePagesAndSearchTest(TestCase):
         self.assertEqual(response.status_code, 200)
         result = list(response.context["worker_list"])
         self.assertEqual(len(result), 0)
-
