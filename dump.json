@@ -1,0 +1,637 @@
+[
+{
+    "model": "hub.position",
+    "pk": 1,
+    "fields": {
+        "name": "Developer"
+    }
+},
+{
+    "model": "hub.position",
+    "pk": 2,
+    "fields": {
+        "name": "Project Manager"
+    }
+},
+{
+    "model": "hub.position",
+    "pk": 3,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "hub.position",
+    "pk": 4,
+    "fields": {
+        "name": "Designer"
+    }
+},
+{
+    "model": "hub.position",
+    "pk": 5,
+    "fields": {
+        "name": "DevOps"
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 1,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "alice",
+        "first_name": "Alice",
+        "last_name": "Smith",
+        "email": "alice@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.557Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 2,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "bob",
+        "first_name": "Bob",
+        "last_name": "Johnson",
+        "email": "bob@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.557Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 3,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "carol",
+        "first_name": "Carol",
+        "last_name": "Williams",
+        "email": "carol@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.558Z",
+        "position": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 4,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "dave",
+        "first_name": "Dave",
+        "last_name": "Brown",
+        "email": "dave@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.558Z",
+        "position": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 5,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "eve",
+        "first_name": "Eve",
+        "last_name": "Jones",
+        "email": "eve@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.558Z",
+        "position": 3,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 6,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "frank",
+        "first_name": "Frank",
+        "last_name": "Garcia",
+        "email": "frank@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.559Z",
+        "position": 3,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 7,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "grace",
+        "first_name": "Grace",
+        "last_name": "Miller",
+        "email": "grace@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.559Z",
+        "position": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 8,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "henry",
+        "first_name": "Henry",
+        "last_name": "Davis",
+        "email": "henry@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.560Z",
+        "position": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 9,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "ivy",
+        "first_name": "Ivy",
+        "last_name": "Martinez",
+        "email": "ivy@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.560Z",
+        "position": 5,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 10,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "jack",
+        "first_name": "Jack",
+        "last_name": "Lopez",
+        "email": "jack@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:16:57.560Z",
+        "position": 5,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.worker",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$oGAuZlIHraltvGlMZ1J79W$E6p1kcch87rry5zSNMdV9gPQIyLHri3jxa2S9CvH84c=",
+        "last_login": "2026-01-19T06:17:26.888Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Jakub",
+        "last_name": "Paluch",
+        "email": "ad@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-01-11T11:17:36.475Z",
+        "position": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "hub.tasktype",
+    "pk": 1,
+    "fields": {
+        "name": "Bug"
+    }
+},
+{
+    "model": "hub.tasktype",
+    "pk": 2,
+    "fields": {
+        "name": "New Feature"
+    }
+},
+{
+    "model": "hub.tasktype",
+    "pk": 3,
+    "fields": {
+        "name": "Breaking Change"
+    }
+},
+{
+    "model": "hub.tasktype",
+    "pk": 4,
+    "fields": {
+        "name": "Refactoring"
+    }
+},
+{
+    "model": "hub.tasktype",
+    "pk": 5,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 1,
+    "fields": {
+        "name": "Fix login bug",
+        "description": "Users cannot log in after password reset. This issue seems to occur only on certain browsers and requires an in-depth review of the authentication middleware and session handling to ensure all edge cases are covered. Additional logging and monitoring may be necessary to fully trace the problem.",
+        "deadline": "2026-01-15T12:00:00Z",
+        "created_at": "2026-01-09T08:00:00Z",
+        "is_completed": false,
+        "priority": 4,
+        "task_type": 1,
+        "assignees": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 2,
+    "fields": {
+        "name": "Implement dashboard",
+        "description": "Create a comprehensive dashboard for project overview. The dashboard must include interactive charts, dynamic filtering, and real-time updates of task statuses. Design mockups should be presented for approval before implementation. This will greatly improve project tracking and decision-making for management.",
+        "deadline": "2026-01-20T12:00:00Z",
+        "created_at": "2026-01-09T08:30:00Z",
+        "is_completed": true,
+        "priority": 3,
+        "task_type": 2,
+        "assignees": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 3,
+    "fields": {
+        "name": "Update CI/CD pipeline",
+        "description": "Make deployment faster and more reliable. Update build scripts, integrate automated tests, and optimize Docker images. Ensure rollback strategy is robust and that all services are monitored post-deployment. This task requires collaboration between DevOps and QA teams.",
+        "deadline": "2026-01-18T12:00:00Z",
+        "created_at": "2026-01-09T09:00:00Z",
+        "is_completed": false,
+        "priority": 2,
+        "task_type": 4,
+        "assignees": [
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 4,
+    "fields": {
+        "name": "Design landing page",
+        "description": "Create mockups for a new landing page with focus on UX, accessibility, and conversion rates. Include multiple color schemes and typography options. Prepare responsive design for all screen sizes and include sample content.",
+        "deadline": "2026-01-25T12:00:00Z",
+        "created_at": "2026-01-09T09:30:00Z",
+        "is_completed": false,
+        "priority": 2,
+        "task_type": 5,
+        "assignees": [
+            7,
+            8
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 5,
+    "fields": {
+        "name": "Critical security bug",
+        "description": "Fix XSS vulnerability in comment section. Investigate how inputs are sanitized and update front-end and back-end validation. Conduct penetration tests and provide report. Security is critical for production stability and user trust.",
+        "deadline": "2026-01-12T12:00:00Z",
+        "created_at": "2026-01-09T10:00:00Z",
+        "is_completed": false,
+        "priority": 4,
+        "task_type": 1,
+        "assignees": [
+            5,
+            6
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 6,
+    "fields": {
+        "name": "Refactor user service",
+        "description": "Improve maintainability and code quality of user service. Break down large functions, add type hints, increase test coverage, and document API endpoints clearly. Ensure backward compatibility while refactoring.",
+        "deadline": "2026-01-22T12:00:00Z",
+        "created_at": "2026-01-09T10:30:00Z",
+        "is_completed": false,
+        "priority": 2,
+        "task_type": 4,
+        "assignees": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 7,
+    "fields": {
+        "name": "QA regression tests",
+        "description": "Run full regression tests before the release of version 2.0. Include all functional modules, API endpoints, and UI interactions. Log all failures in bug tracker and coordinate fixes with developers. This ensures stable release without critical issues.",
+        "deadline": "2026-01-19T12:00:00Z",
+        "created_at": "2026-01-09T11:00:00Z",
+        "is_completed": false,
+        "priority": 3,
+        "task_type": 5,
+        "assignees": [
+            5,
+            6
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 8,
+    "fields": {
+        "name": "Fix typo in documentation",
+        "description": "Correct spelling errors and inconsistencies in README, wiki pages, and API docs. Ensure documentation is clear and follows company style guide. Double-check code examples for accuracy.",
+        "deadline": "2026-01-10T12:00:00Z",
+        "created_at": "2026-01-08T15:00:00Z",
+        "is_completed": true,
+        "priority": 1,
+        "task_type": 4,
+        "assignees": [
+            1
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 9,
+    "fields": {
+        "name": "Setup staging environment",
+        "description": "Deploy staging server with latest build, configure environment variables, SSL certificates, database replicas, and monitoring tools. Test deployment scripts and validate against production settings to ensure parity.",
+        "deadline": "2026-01-11T12:00:00Z",
+        "created_at": "2026-01-07T12:00:00Z",
+        "is_completed": true,
+        "priority": 3,
+        "task_type": 3,
+        "assignees": [
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 10,
+    "fields": {
+        "name": "Complete UI mockups",
+        "description": "Finish all mockups for new feature, including mobile and tablet screens. Collaborate with designer team to ensure brand consistency, usability, and responsiveness. Prepare final handoff to front-end developers with detailed specifications.",
+        "deadline": "2026-01-09T18:00:00Z",
+        "created_at": "2026-01-06T10:00:00Z",
+        "is_completed": true,
+        "priority": 2,
+        "task_type": 2,
+        "assignees": [
+            7,
+            8
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 11,
+    "fields": {
+        "name": "Optimize database queries",
+        "description": "Analyze current queries for performance issues, add necessary indexes, optimize joins, and reduce N+1 problems. Document improvements and ensure test coverage reflects changes. Collaborate with back-end team to integrate optimizations.",
+        "deadline": "2026-01-23T12:00:00Z",
+        "created_at": "2026-01-10T08:00:00Z",
+        "is_completed": false,
+        "priority": 3,
+        "task_type": 4,
+        "assignees": [
+            1,
+            3,
+            5
+        ]
+    }
+},
+{
+    "model": "hub.task",
+    "pk": 12,
+    "fields": {
+        "name": "Implement notifications system",
+        "description": "Create a robust notifications system with email and in-app notifications, including scheduling, batching, and priority handling. Ensure system is modular, scalable, and thoroughly tested. Provide admin panel to manage notification types and content templates.",
+        "deadline": "2026-01-24T12:00:00Z",
+        "created_at": "2026-01-10T09:00:00Z",
+        "is_completed": false,
+        "priority": 4,
+        "task_type": 2,
+        "assignees": [
+            11,
+            2,
+            4,
+            6
+        ]
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 1,
+    "fields": {
+        "content": "I am looking into the login bug now, seems related to session cookies.",
+        "created_at": "2026-01-09T09:00:00Z",
+        "task": 1,
+        "author": 1
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 2,
+    "fields": {
+        "content": "Dashboard charts should include filters by project and status.",
+        "created_at": "2026-01-09T09:30:00Z",
+        "task": 2,
+        "author": 2
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 3,
+    "fields": {
+        "content": "CI/CD pipeline optimized with caching of dependencies.",
+        "created_at": "2026-01-09T10:00:00Z",
+        "task": 3,
+        "author": 10
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 4,
+    "fields": {
+        "content": "Landing page mockups approved by design lead.",
+        "created_at": "2026-01-09T10:30:00Z",
+        "task": 4,
+        "author": 7
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 5,
+    "fields": {
+        "content": "Security patch deployed to production.",
+        "created_at": "2026-01-09T11:00:00Z",
+        "task": 5,
+        "author": 5
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 6,
+    "fields": {
+        "content": "Refactored user service and added extra unit tests.",
+        "created_at": "2026-01-09T11:30:00Z",
+        "task": 6,
+        "author": 1
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 7,
+    "fields": {
+        "content": "Regression tests completed, no critical failures found.",
+        "created_at": "2026-01-09T12:00:00Z",
+        "task": 7,
+        "author": 6
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 8,
+    "fields": {
+        "content": "Typo corrections done and documentation reviewed.",
+        "created_at": "2026-01-09T12:30:00Z",
+        "task": 8,
+        "author": 1
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 9,
+    "fields": {
+        "content": "Staging server ready for QA team testing.",
+        "created_at": "2026-01-09T13:00:00Z",
+        "task": 9,
+        "author": 10
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 10,
+    "fields": {
+        "content": "UI mockups finalized and handed off to front-end.",
+        "created_at": "2026-01-09T13:30:00Z",
+        "task": 10,
+        "author": 8
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 11,
+    "fields": {
+        "content": "Database queries analyzed, added indexes and optimized joins.",
+        "created_at": "2026-01-10T09:30:00Z",
+        "task": 11,
+        "author": 3
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 12,
+    "fields": {
+        "content": "Notifications system implemented with batching and admin panel.",
+        "created_at": "2026-01-10T10:00:00Z",
+        "task": 12,
+        "author": 4
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 13,
+    "fields": {
+        "content": "ok keep on going!!!",
+        "created_at": "2026-01-11T14:51:56.264Z",
+        "task": 5,
+        "author": 11
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 14,
+    "fields": {
+        "content": "vbfhfgh",
+        "created_at": "2026-01-11T14:54:58.741Z",
+        "task": 9,
+        "author": 11
+    }
+},
+{
+    "model": "hub.comment",
+    "pk": 16,
+    "fields": {
+        "content": "WTH move it!!",
+        "created_at": "2026-01-13T06:27:09.415Z",
+        "task": 7,
+        "author": 11
+    }
+}
+]
